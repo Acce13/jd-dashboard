@@ -1,0 +1,64 @@
+@import "~bootstrap/scss/bootstrap";
+
+//UTILITIES
+@import "./utilities/variables";
+
+body {
+    background-color: #0B1026;
+}
+
+.wrapper { min-height: 100vh; }
+
+.sidebar {
+    background-color: #151A34;
+    transition: all .3s;
+    width: 300px;
+    z-index: 1;
+}
+
+/*
+*
+* MAIN
+*
+*/
+
+.main {
+    position: relative;
+    width: calc(100% - 300px);
+    transition: all .3s;
+    float: right;
+}
+
+.navbar {
+    min-height: 100px;
+}
+
+.navbar__btn-icon {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.navbar__notification-badge {
+    padding: 0.3rem;
+    left: 65%;
+    top: 35%;
+}
+
+/*
+*
+* MEDIA
+*
+*/
+
+@media screen and (max-width: 991px) {
+    .sidebar {
+        transform: translate3d(-300px, 0, 0);
+        transition: all .3s;
+    }
+
+    .main {
+        width: 100%;
+        transition: all .3s;
+    }
+}
