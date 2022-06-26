@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AvatarImage from './asset/images/avatar.png';
 import { MdDashboard, MdMenu, MdMessage, MdNotifications, MdPeople, MdSettings } from 'react-icons/md';
 import './sass/_app.scss';
 
 export const App = () => {
+
+    const [sidebarToggle, setSidebarToggle] = useState(false);
+
+    const handleSidebarToggle = () => { setSidebarToggle(!sidebarToggle) }
+
     return (
         <div className="wrapper">
-            <aside className="sidebar h-100 position-fixed">
+            <aside className={ `sidebar h-100 position-fixed ${ sidebarToggle ? 'sidebar-open' : '' }` }>
                 <div className="sidebar__content h-100">
                     <div className="sidebar__header">
                         <div className="pt-4 pb-3 px-4">
@@ -45,9 +50,13 @@ export const App = () => {
             <main className="main">
                 <nav className="navbar py-0 px-3">
                     <div className="d-flex flex-row align-items-center">
-                        <a href="#" className="btn navbar__btn-icon text-secondary position-relative">
+                        <button 
+                            type="button" 
+                            className="btn navbar__btn-icon text-secondary position-relative"
+                            onClick={ handleSidebarToggle }
+                        >
                             <MdMenu className="fs-4"/>
-                        </a>
+                        </button>
                         <h4 className="text-secondary fw-bold mb-0">Dashboard</h4>
                     </div>
                     <div>
@@ -73,7 +82,6 @@ export const App = () => {
                         <div className="card-body">
                             <h4 className="card-title">Bienvenidos</h4>
                             <p>Pendientes</p>
-                            <p>- Sidebar open</p>
                             <p>- Offcanvas para las configuraciones, notificaciones y mensajes</p>
                             <p>- Agregar modo noche</p>
                             <p>- Agregar funcionalidad de cambio de colores</p>
@@ -81,6 +89,7 @@ export const App = () => {
                     </div>
                 </div>
             </main>
+            <div className={ `overlay ${ sidebarToggle ? 'sidebar-open' : '' }` } onClick={ handleSidebarToggle }></div>
         </div>
     )
 }
